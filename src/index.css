@@ -110,6 +110,6 @@
   }
 
   .nav-blur {
-    @apply backdrop-blur-md bg-white/80;
+    @apply bg-black;
   }
 }

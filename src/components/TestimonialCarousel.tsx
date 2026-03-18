@@ -54,73 +54,43 @@ const TestimonialCarousel = () => {
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
-    const amount = 400;
-    scrollRef.current.scrollBy({
-      left: direction === "left" ? -amount : amount,
-      behavior: "smooth",
-    });
+    scrollRef.current.scrollBy({ left: direction === "left" ? -400 : 400, behavior: "smooth" });
     setTimeout(checkScroll, 350);
   };
 
   return (
-    <section className="py-24 bg-muted">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="flex items-end justify-between mb-12">
           <div>
-            <p className="section-overline mb-3">Testimonials</p>
-            <h2 className="text-4xl font-bold text-foreground">
-              What Our Clients Say
-            </h2>
-            <p className="text-muted-foreground mt-3 prose-limit">
-              See how we've helped homeowners transform their spaces.
-            </p>
+            <p className="text-xs uppercase tracking-widest text-black/40 font-medium mb-3">Testimonials</p>
+            <h2 className="text-4xl font-bold text-black">What Our Clients Say</h2>
+            <p className="text-black/60 mt-3 max-w-[65ch]">See how we've helped homeowners transform their spaces.</p>
           </div>
           <div className="hidden md:flex gap-2">
-            <button
-              onClick={() => scroll("left")}
-              disabled={!canScrollLeft}
-              className="p-3 rounded-full border border-foreground/10 bg-card text-foreground disabled:opacity-30 hover:bg-foreground hover:text-background transition-colors"
-            >
+            <button onClick={() => scroll("left")} disabled={!canScrollLeft} className="p-3 rounded-full border border-black/10 bg-white text-black disabled:opacity-30 hover:bg-black hover:text-white transition-colors">
               <ChevronLeft size={18} />
             </button>
-            <button
-              onClick={() => scroll("right")}
-              disabled={!canScrollRight}
-              className="p-3 rounded-full border border-foreground/10 bg-card text-foreground disabled:opacity-30 hover:bg-foreground hover:text-background transition-colors"
-            >
+            <button onClick={() => scroll("right")} disabled={!canScrollRight} className="p-3 rounded-full border border-black/10 bg-white text-black disabled:opacity-30 hover:bg-black hover:text-white transition-colors">
               <ChevronRight size={18} />
             </button>
           </div>
         </div>
 
-        <div
-          ref={scrollRef}
-          onScroll={checkScroll}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
+        <div ref={scrollRef} onScroll={checkScroll} className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           {testimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.4 }}
-              viewport={{ once: true }}
-              className="snap-start shrink-0 w-[350px] md:w-[420px] bg-card rounded-xl p-6 shadow-stack"
-            >
+            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1, duration: 0.4 }} viewport={{ once: true }} className="snap-start shrink-0 w-[350px] md:w-[420px] bg-white border border-black/10 rounded-xl p-6 shadow-lg">
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} size={16} className="fill-accent text-accent" />
+                  <Star key={j} size={16} className="fill-black text-black" />
                 ))}
               </div>
-              <p className="text-foreground text-sm leading-relaxed mb-6" style={{ textWrap: "pretty" } as React.CSSProperties}>
+              <p className="text-black text-sm leading-relaxed mb-6" style={{ textWrap: "pretty" } as React.CSSProperties}>
                 "{t.text}"
               </p>
-              <div className="border-t border-foreground/5 pt-4">
-                <p className="font-semibold text-foreground text-sm">{t.name}</p>
-                <p className="text-xs text-muted-foreground tabular-nums mt-0.5">
-                  {t.badge} · {t.time}
-                </p>
+              <div className="border-t border-black/5 pt-4">
+                <p className="font-semibold text-black text-sm">{t.name}</p>
+                <p className="text-xs text-black/40 tabular-nums mt-0.5">{t.badge} · {t.time}</p>
               </div>
             </motion.div>
           ))}
