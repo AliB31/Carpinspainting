@@ -1,3 +1,3 @@
-# Welcome to your new site
+# Welcome to your demo site
 
 TODO: Document your project here
